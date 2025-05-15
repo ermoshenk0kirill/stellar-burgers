@@ -4,8 +4,8 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../services/store';
-import { fetchOrderNumber, getOrderSelector } from '../../services/slices/orderSlice';
-import { getIngredientsSelector } from '../../services/slices/ingredientsSlice';
+import { fetchOrderNumber, getOrderNumberSelector, getOrderSelector } from '../../services/slices/orderSlice';
+import { fetchIngredients, getIngredientsSelector } from '../../services/slices/ingredientsSlice';
 
 export const OrderInfo: FC = () => {
   const id = useParams().number;
@@ -16,7 +16,8 @@ export const OrderInfo: FC = () => {
     dispatch(fetchOrderNumber(Number(id)))
   }, [dispatch, id]);
 
-  const orderData = useSelector(getOrderSelector);
+  // const orderData = useSelector(getOrderSelector);
+  const orderData = useSelector(getOrderNumberSelector);
 
   const ingredients: TIngredient[] = useSelector(getIngredientsSelector);
 

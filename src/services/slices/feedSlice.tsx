@@ -18,6 +18,7 @@ interface IFeedSlice {
   error: null | string;
 }
 
+
 const initialState: IFeedSlice = {
   orders: [],
   total: 0,

@@ -17,8 +17,18 @@ const initialState: IIngredientState = {
 export const fetchIngredients = createAsyncThunk(
   'ingredients/fetchIngredients',
   async () => {
+    console.log('gooooooood')
     const result = getIngredientsApi();
+    console.log(result);
     return result;
+    // try {
+    //   console.log('all good')
+    //   return await getIngredientsApi();
+      
+    // } catch (error) {
+    //   console.log('all bad')
+    //   throw error
+    // };
   }
 )
 

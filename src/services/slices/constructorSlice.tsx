@@ -2,6 +2,8 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {TConstructorIngredient, TIngredient} from '../../utils/types';
 import {v4 as uuid} from 'uuid';
 
+
+
 interface IConstructorSlice {
   bun:  TConstructorIngredient | null;
   ingredients: TConstructorIngredient[];
@@ -16,7 +18,7 @@ export const constructorSlice = createSlice({
   name: 'burgerSlice',
   initialState,
   reducers: {
-
+    // Добавление ингредиента
     addIngredients: (state, action: PayloadAction<TIngredient>) => {
       if (action.payload.type === 'bun') {
         state.bun = {...action.payload, id: uuid()};
@@ -25,13 +27,16 @@ export const constructorSlice = createSlice({
         state.ingredients.push({...action.payload, id: uuid()})
       }
     },
+    // Удаление ингредиента
     removeIngredients: (state, {payload}: PayloadAction<string>) => {
+      // если выбрали элемент, то он не попадает в отфильтрованный список
       state.ingredients = state.ingredients.filter((item) => item.id !== payload);
     },
     resetConstructor : (state) => {
       state.bun = null;
       state.ingredients = [];
     },
+    // Перемещение ингредиента вверх 
     moveIngredientsUp: (state, action) => {
       const index = state.ingredients.findIndex((item) => item.id === action.payload.id);
       if (index > 0) {
@@ -40,6 +45,7 @@ export const constructorSlice = createSlice({
         state.ingredients[index - 1] = temp;
       }
     },
+    // Перемещение ингредиента вниз
     moveIngredientsDown: (state, action) => {
       const index = state.ingredients.findIndex((item) => item.id === action.payload.id);
       if (index < state.ingredients.length - 1) {
@@ -48,6 +54,7 @@ export const constructorSlice = createSlice({
         state.ingredients[index + 1] = temp;
       }
     },
+    // очищение корзины 
     clearConstructor: (state) => {
       state.bun = null;
       state.ingredients = [];
