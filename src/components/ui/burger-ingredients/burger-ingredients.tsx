@@ -48,6 +48,7 @@ export const BurgerIngredientsUI: FC<BurgerIngredientsUIProps> = memo(
             titleRef={titleBunRef}
             ingredients={buns}
             ref={bunsRef}
+            data-cy='buns'
           />
           <IngredientsCategory
             title='Начинки'
