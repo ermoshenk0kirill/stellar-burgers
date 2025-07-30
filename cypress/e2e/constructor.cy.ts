@@ -23,7 +23,7 @@ describe("интреграционные тесты: добавление инг
 
   describe('Добавление булок', () => {
     it('тест: "Добавление булок"', () => {
-      cy.get('[data-cy=buns]').contains('Добавить').click();
+      cy.get('[data-cy=ingredients]').contains('Добавить').click();
       cy.get('[data-cy=bun-top]').contains('Краторная булка N-200i').should('exist');
       cy.get('[data-cy=bun-bottom]').contains('Краторная булка N-200i').should('exist'); 
     })
